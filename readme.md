@@ -21,14 +21,16 @@
 Установка
 Убедитесь, что Python и Node.js установлены.
 Установите Mermaid CLI:
-```bash
+```Bash
+
 npm install -g @mermaid-js/mermaid-cli
 ```
 Скачайте или скопируйте репозиторий с этим проектом.
 Конфигурация
 Перед запуском создайте JSON-файл конфигурации, например, config.json. Пример содержимого:
 
-```json
+```JSON
+
 {
     "repo_path": "C:/Users/username/your-repo",
     "mermaid_cli_path": "C:/Users/username/AppData/Roaming/npm/mmdc",
@@ -48,7 +50,8 @@ since_date: Дата в формате YYYY-MM-DD, после которой б�
 
 Запустите скрипт:
 
-```bash
+```Bash
+
 python dependency_graph.py config.json
 ```
 Как это работает
@@ -56,7 +59,8 @@ python dependency_graph.py config.json
 
 Анализ Git-репозитория: Извлекается список коммитов с их зависимостями (родителями) с помощью команды:
 
-```bash
+```Bash
+
 git log --since=<since_date> --pretty=format:"%H %P"
 ```
 Создание Mermaid-графа: Формируется текстовый Mermaid-граф зависимостей в формате graph TD.
@@ -69,7 +73,8 @@ git log --since=<since_date> --pretty=format:"%H %P"
 Конфигурация
 Пример config.json:
 
-```json
+```JSON
+
 {
     "repo_path": "C:/Users/username/MyRepo",
     "mermaid_cli_path": "C:/Users/username/AppData/Roaming/npm/mmdc",
@@ -78,7 +83,8 @@ git log --since=<since_date> --pretty=format:"%H %P"
 }
 ```
 Команда запуска
-```bash
+```Bash
+
 python dependency_graph.py config.json
 ```
 Выходной результат
@@ -86,7 +92,7 @@ python dependency_graph.py config.json
 
 Примечания
 Если Mermaid CLI не установлен, выполните:
-```bash
+```Bash
 npm install -g @mermaid-js/mermaid-cli
 ```
 Убедитесь, что в репозитории есть коммиты после указанной даты.
@@ -94,12 +100,22 @@ npm install -g @mermaid-js/mermaid-cli
 Пример графа
 Пример Mermaid-графа для визуализации:
 
-```mermaid
-graph TD
-    Commit1[Commit 1: abc123] --> Commit2[Commit 2: def456]
-    Commit2[Commit 2: def456] --> Commit3[Commit 3: ghi789]
-    Commit3[Commit 3: ghi789] --> Commit4[Commit 4: jkl012]
-    Commit2[Commit 2: def456] --> Commit5[Commit 5: mno345]
+```Mermaid
+
+digraph {
+  1 [label="Commit 1
+778f560"]
+  2 [label="Commit 2
+64acb0c"]
+  1 -> 2
+  3 [label="Commit 3
+db25305"]
+  2 -> 3
+  4 [label="Commit 4
+1220321"]
+  3 -> 4
+}
 ```
 После выполнения граф будет автоматически преобразован в PNG.
 ![Скриншот результата](photo/photo1.png)
+```
